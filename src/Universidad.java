@@ -1,26 +1,47 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Universidad {
-    private static ArrayList<Carrera> carreras;
-    
+    private static Carrera[] carreras;
+
+    public static void setCarreras(Carrera[] carreras) {
+        Universidad.carreras = carreras;
+    }
+
     public static void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
-        int opcion = 1;
+        int opcion = -1;
         while(opcion != 0) {
-            System.out.println("\n--- Menú ---");
-            System.out.println("1. Matricular Alumno");
-            System.out.println("2. Inscribir Alumno en Materia");
-            System.out.println("3. Cargar situación final del cursado");
-            System.out.println("4. Mostrar Alumnos de Carrera/Materia");
-            System.out.println("0. Salir");
+            System.out.println("\n--- Menú ---\n"
+                    +"1. Matricular Alumno\n"
+                    +"2. Inscribir Alumno en Materia"
+                    +"3. Cargar situación final del cursado"
+                    +"4. Mostrar Alumnos de Carrera/Materia"
+                    +"0. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar 
+
+            scanner.nextLine(); // Limpiar
             
             switch (opcion) {
                 case 1:
-                    matricularAlumno(scanner);
+                    opcion = -1;
+                    while (opcion != 0){
+                        System.out.println("Seleccione la carrera:");
+                        for (int i = 0; i < carreras.length; i++ ){
+                            System.out.println(i+1 + ". "+ carreras[i].nombre.toUpperCase());
+                        }
+                        System.out.println("0.Cancelar Matriculacion");
+                            opcion = scanner.nextInt();
+
+                            if(opcion == 0){
+                                break;
+                            } else if (opcion > 0 && opcion <= carreras.length + 1) {
+                                matricularNuevoAlumno(scanner,carreras[opcion-1]);
+                                opcion = 0;
+                            }else {
+                                System.out.println("Opción no válida.");
+                            }
+                    }
                     break;
                 case 2:
                     inscribirAlumnoEnMateria(scanner);
@@ -41,7 +62,7 @@ public class Universidad {
         scanner.close();
     }
 
-    public static Alumno matricularAlumno(Scanner scanner,Carrera carrera) {
+    public static void matricularNuevoAlumno(Scanner scanner, Carrera carrera) {
         Alumno alumno = null;
         boolean datosValidos = false;
         while (!datosValidos) {
@@ -81,13 +102,11 @@ public class Universidad {
                 System.out.println("Error: " + e.getMessage() + " Intente de nuevo.");
             }
         }
-
-        return alumno;
-
-        public static void inscribirAlumnoEnMateria(Scanner scanner) {
-        // Similar para inscribir alumno en una materia de una carrera
+       carrera.addAlumno(alumno);
     }
-    
+    public static void inscribirAlumnoEnMateria(Scanner scanner) {
+            // Similar para inscribir alumno en una materia de una carrera
+    }
     public static void cargarSituacionFinal(Scanner scanner) {
         // Implementar funcionalidad para cargar la situación final del alumno
     }
