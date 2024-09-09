@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Universidad {
-    private  ArrayList<Carrera> carreras = new ArrayList<>();
+    private ArrayList<Carrera> carreras = new ArrayList<>();
 
     public void addCarreras(Carrera carrera) {
         this.carreras.add(carrera);
@@ -36,7 +36,7 @@ public class Universidad {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1://Matricular Alumno
+                case 1:
                     while (opcion != 0) {
                         System.out.println("Seleccione la carrera:");
                         for (int i = 0; i < carreras.size(); i++) {
@@ -47,6 +47,7 @@ public class Universidad {
                         scanner.nextLine();
 
                         if (opcion == 0) {
+                            opcion = -1;
                             break;
                         } else if (opcion > 0 && opcion <= carreras.size()) {
                             matricularNuevoAlumno(scanner, carreras.get(opcion - 1));
@@ -68,6 +69,7 @@ public class Universidad {
                         scanner.nextLine();
 
                         if (opcion == 0) {
+                            opcion = -1;
                             break;
                         } else if (opcion > 0 && opcion <= carreras.size()) {
                             inscribirAlumnoEnMateria(scanner, carreras.get(opcion - 1));
@@ -89,6 +91,7 @@ public class Universidad {
                         scanner.nextLine();
 
                         if (opcion == 0) {
+                            opcion = -1;
                             break;
                         } else if (opcion > 0 && opcion <= carreras.size()) {
                             cargarSituacionFinal(scanner);
@@ -100,7 +103,7 @@ public class Universidad {
                     break;
 
                 case 4://Mostrar Alumnos de Carrera/Materia
-                    while (opcion != 1 && opcion != 2 && opcion != 0) {
+                    while (opcion != 1 && opcion != 2 ) {
                         System.out.println("""
                                 1.Ver por carrera
                                 2.Ver por materia
@@ -108,6 +111,10 @@ public class Universidad {
                                 """);
                         opcion = scanner.nextInt();
                         scanner.nextLine();
+                        if (opcion == 0) {
+                            opcion = -1;
+                            break;
+                        }
                     }
                     while (opcion == 1) {
                         System.out.println("Seleccione la Materia:");
@@ -119,6 +126,7 @@ public class Universidad {
                         scanner.nextLine();
 
                         if (opcion == 0) {
+                            opcion = -1;
                             break;
                         } else if (opcion > 0 && opcion <= carreras.size()) {
                             for(Alumno salida : getAlumnosDeCarrera(carreras.get(opcion - 1))){
@@ -144,6 +152,7 @@ public class Universidad {
                         scanner.nextLine();
 
                         if (opcion == 0) {
+                            opcion = -1;
                             break;
                         } else if (opcion > 0 && opcion <= carreras.size()) {
                             while (opcion != 0) {
@@ -155,6 +164,7 @@ public class Universidad {
                                 opcion = scanner.nextInt();
                                 scanner.nextLine();
                                 if (opcion == 0) {
+                                    opcion = -1;
                                     break;
                                 } else if(opcion <= carreras.get(opcion - 1).getMaterias().size()){
                                     for(Alumno salida : carreras.get(opcion-1).getMaterias().get(opcion-1).getAlumnos()){
