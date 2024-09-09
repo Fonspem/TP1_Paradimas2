@@ -250,10 +250,14 @@ public class Universidad {
         String nombreAlumno = scanner.nextLine();
         Alumno alumno = buscarAlumnoPorNombre(nombreAlumno);
 
+
+        //Agregar funcion a alumno que devuelva las materias en que este inscripto??????
+
+
         if (alumno != null) {
             System.out.println("Ingrese la materia:");
             String nombreMateria = scanner.nextLine();
-            Materia materia = alumno.getMateria(nombreMateria);
+            Materia materia = getMateria(nombreMateria);
 
             if (materia != null) {
                 System.out.println("Ingrese la situación final (Aprobado/Desaprobado):");
