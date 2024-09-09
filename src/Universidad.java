@@ -1,15 +1,24 @@
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Universidad {
-    private static Carrera[] carreras;
+    private  ArrayList<Carrera> carreras = new ArrayList<>();
 
-    public static void setCarreras(Carrera[] carreras) {
-        Universidad.carreras = carreras;
+    public void addCarreras(Carrera carrera) {
+        this.carreras.add(carrera);
     }
 
-    public static void mostrarMenu() {
+    public Universidad(){
+        Coordinador coordSistemas = new Coordinador("Matias","",441212,"",Sexo.MASCULINO,"");
+        Profesor snape = new Profesor("Snape","",13535,"",Sexo.MASCULINO,"");
+        Materia programacion = new Materia("Programacion",2,false,snape,null);
+        ArrayList<Materia> mat = new ArrayList<>();
+        mat.add(programacion);
+        Carrera carrera = new Carrera("Sistemas",10,coordSistemas,0,0,mat);
+        this.addCarreras(carrera);
+    }
+
+    public void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
         int opcion = -1;
 
@@ -30,8 +39,8 @@ public class Universidad {
                 case 1://Matricular Alumno
                     while (opcion != 0) {
                         System.out.println("Seleccione la carrera:");
-                        for (int i = 0; i < carreras.length; i++) {
-                            System.out.println((i + 1) + ". " + carreras[i].getNombre().toUpperCase());
+                        for (int i = 0; i < carreras.size(); i++) {
+                            System.out.println((i + 1) + ". " + carreras.get(i).getNombre().toUpperCase());
                         }
                         System.out.println("0. Cancelar Matriculación");
                         opcion = scanner.nextInt();
@@ -39,8 +48,8 @@ public class Universidad {
 
                         if (opcion == 0) {
                             break;
-                        } else if (opcion > 0 && opcion <= carreras.length) {
-                            matricularNuevoAlumno(scanner, carreras[opcion - 1]);
+                        } else if (opcion > 0 && opcion <= carreras.size()) {
+                            matricularNuevoAlumno(scanner, carreras.get(opcion - 1));
                             opcion = 0;
                         } else {
                             System.out.println("Opción no válida.");
@@ -51,8 +60,8 @@ public class Universidad {
                 case 2://Inscribir Alumno en Materia
                     while (opcion != 0) {
                         System.out.println("Seleccione la carrera:");
-                        for (int i = 0; i < carreras.length; i++) {
-                            System.out.println((i + 1) + ". " + carreras[i].getNombre().toUpperCase());
+                        for (int i = 0; i < carreras.size(); i++) {
+                            System.out.println((i + 1) + ". " + carreras.get(i).getNombre().toUpperCase());
                         }
                         System.out.println("0. Cancelar Inscripción");
                         opcion = scanner.nextInt();
@@ -60,8 +69,8 @@ public class Universidad {
 
                         if (opcion == 0) {
                             break;
-                        } else if (opcion > 0 && opcion <= carreras.length) {
-                            inscribirAlumnoEnMateria(scanner, carreras[opcion - 1]);
+                        } else if (opcion > 0 && opcion <= carreras.size()) {
+                            inscribirAlumnoEnMateria(scanner, carreras.get(opcion - 1));
                             opcion = 0;
                         } else {
                             System.out.println("Opción no válida.");
@@ -72,8 +81,8 @@ public class Universidad {
                 case 3://Cargar situación final del cursado
                     while (opcion != 0) {
                         System.out.println("Seleccione la carrera:");
-                        for (int i = 0; i < carreras.length; i++) {
-                            System.out.println((i + 1) + ". " + carreras[i].getNombre().toUpperCase());
+                        for (int i = 0; i < carreras.size(); i++) {
+                            System.out.println((i + 1) + ". " + carreras.get(i).getNombre().toUpperCase());
                         }
                         System.out.println("0. Cancelar carga de situación final");
                         opcion = scanner.nextInt();
@@ -81,8 +90,8 @@ public class Universidad {
 
                         if (opcion == 0) {
                             break;
-                        } else if (opcion > 0 && opcion <= carreras.length) {
-                            cargarSituacionFinal(scanner, carreras[opcion - 1]);
+                        } else if (opcion > 0 && opcion <= carreras.size()) {
+                            cargarSituacionFinal(scanner);
                             opcion = 0;
                         } else {
                             System.out.println("Opción no válida.");
@@ -101,9 +110,9 @@ public class Universidad {
                         scanner.nextLine();
                     }
                     while (opcion == 1) {
-                        System.out.println("Seleccione la carrera:");
-                        for (int i = 0; i < carreras.length; i++) {
-                            System.out.println((i + 1) + ". " + carreras[i].getNombre().toUpperCase());
+                        System.out.println("Seleccione la Materia:");
+                        for (int i = 0; i < carreras.size(); i++) {
+                            System.out.println((i + 1) + ". " + carreras.get(i).getNombre().toUpperCase());
                         }
                         System.out.println("0. Cancelar visualización de alumnos");
                         opcion = scanner.nextInt();
@@ -111,8 +120,8 @@ public class Universidad {
 
                         if (opcion == 0) {
                             break;
-                        } else if (opcion > 0 && opcion <= carreras.length) {
-                            for(Alumno salida : getAlumnosDeCarrera(scanner, carreras[opcion - 1])){
+                        } else if (opcion > 0 && opcion <= carreras.size()) {
+                            for(Alumno salida : getAlumnosDeCarrera(carreras.get(opcion - 1))){
                                 System.out.println("Apellido,Nombre,DNI,Legajo");
                                 System.out.println(salida.getApellido()+","
                                         +salida.getNombre()+","
@@ -127,8 +136,8 @@ public class Universidad {
                     }
                     while (opcion == 2) {
                         System.out.println("Seleccione la carrera:");
-                        for (int i = 0; i < carreras.length; i++) {
-                            System.out.println((i + 1) + ". " + carreras[i].getNombre().toUpperCase());
+                        for (int i = 0; i < carreras.size(); i++) {
+                            System.out.println((i + 1) + ". " + carreras.get(i).getNombre().toUpperCase());
                         }
                         System.out.println("0. Cancelar visualización de alumnos");
                         opcion = scanner.nextInt();
@@ -136,19 +145,19 @@ public class Universidad {
 
                         if (opcion == 0) {
                             break;
-                        } else if (opcion > 0 && opcion <= carreras.length) {
+                        } else if (opcion > 0 && opcion <= carreras.size()) {
                             while (opcion != 0) {
                                 System.out.println("Seleccione la materia:");
-                                for (int i = 0; i < carreras[opcion - 1].getMaterias().size(); i++) {
-                                    System.out.println((i + 1) + ". " + carreras[opcion - 1].getMaterias().get(i));
+                                for (int i = 0; i < carreras.get(opcion - 1).getMaterias().size(); i++) {
+                                    System.out.println((i + 1) + ". " + carreras.get(opcion - 1).getMaterias().get(i));
                                 }
                                 System.out.println("0. Cancelar visualización de alumnos");
                                 opcion = scanner.nextInt();
                                 scanner.nextLine();
                                 if (opcion == 0) {
                                     break;
-                                } else if(opcion <= carreras[opcion - 1].getMaterias().size()){
-                                    for(Alumno salida : carreras[opcion-1].getMaterias().get(opcion-1).getAlumnos()){
+                                } else if(opcion <= carreras.get(opcion - 1).getMaterias().size()){
+                                    for(Alumno salida : carreras.get(opcion-1).getMaterias().get(opcion-1).getAlumnos()){
                                         System.out.println("Apellido,Nombre,DNI,Legajo");
                                         System.out.println(salida.getApellido()+","
                                                 +salida.getNombre()+","
@@ -177,7 +186,7 @@ public class Universidad {
         scanner.close();
     }
 
-    public static void matricularNuevoAlumno(Scanner scanner, Carrera carrera) {
+    public void matricularNuevoAlumno(Scanner scanner, Carrera carrera) {
         Alumno alumno = null;
         boolean datosValidos = false;
         while (!datosValidos) {
@@ -219,7 +228,8 @@ public class Universidad {
         }
        carrera.addAlumno(alumno);
     }
-    public static void inscribirAlumnoEnMateria(Scanner scanner, Carrera carrera) {
+
+    public void inscribirAlumnoEnMateria(Scanner scanner, Carrera carrera) {
         System.out.println("Ingrese el nombre del alumno a inscribir:");
         String nombreAlumno = scanner.nextLine();
         Alumno alumno = buscarAlumnoPorNombre(nombreAlumno);
@@ -235,7 +245,7 @@ public class Universidad {
 
             if (opcionMateria > 0 && opcionMateria <= carrera.getMaterias().size()) {
                 Materia materia = carrera.getMaterias().get(opcionMateria - 1);
-                materia.inscribirAlumno(alumno);
+                materia.addAlumno(alumno);
                 System.out.println("Alumno inscrito en la materia " + materia.getNombre());
             } else {
                 System.out.println("Opción de materia no válida.");
@@ -245,28 +255,22 @@ public class Universidad {
         }
     }
 
-    public static void cargarSituacionFinal(Scanner scanner, Carrera carrera) {
+    public void cargarSituacionFinal(Scanner scanner) {
         System.out.println("Ingrese el nombre del alumno:");
         String nombreAlumno = scanner.nextLine();
         Alumno alumno = buscarAlumnoPorNombre(nombreAlumno);
-
-
-        //Agregar funcion a alumno que devuelva las materias en que este inscripto??????
-
+        ArrayList<Materia> listado = getMateriasInscripto(alumno);
 
         if (alumno != null) {
-            System.out.println("Ingrese la materia:");
-            String nombreMateria = scanner.nextLine();
-            Materia materia = getMateria(nombreMateria);
+            System.out.println("Seleccione la materia entre");
+            for (int i = 0; i < listado.size(); i++) {
+                System.out.println((i + 1) + ". " + listado.get(i).getNombre().toUpperCase());
+            }
+            int opcion = scanner.nextInt();
 
-            if (materia != null) {
-                System.out.println("Ingrese la situación final (Aprobado/Desaprobado):");
-                String situacionFinal = scanner.nextLine();
-                System.out.println("Ingrese la cantidad de inasistencias:");
-                int inasistencias = scanner.nextInt();
-                scanner.nextLine();  // Limpiar buffer
-
-                materia.cargarSituacionFinal(alumno, situacionFinal, inasistencias);
+            if (opcion != 0 && opcion <= listado.size()) {
+                Situacion sit_actual = listado.get(opcion-1).profesor.get_situacion_de_alumno(alumno);
+                alumno.addSituacionMateria(listado.get(opcion),sit_actual);
                 System.out.println("Situación final cargada.");
             } else {
                 System.out.println("Materia no encontrada.");
@@ -276,8 +280,8 @@ public class Universidad {
         }
     }
 
-    public static ArrayList<Alumno> getAlumnosDeCarrera(Scanner scanner, Carrera carrera) {
-        ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+    public ArrayList<Alumno> getAlumnosDeCarrera( Carrera carrera) {
+        ArrayList<Alumno> alumnos = new ArrayList<>();
         for (Materia materia : carrera.getMaterias()) {
             if (!materia.getAlumnos().isEmpty()) {
                 alumnos.addAll(materia.getAlumnos());
@@ -286,7 +290,7 @@ public class Universidad {
         return alumnos;
     }
 
-    public static Alumno buscarAlumnoPorNombre(String nombre) {
+    public Alumno buscarAlumnoPorNombre(String nombre) {
         for (Carrera carrera : carreras) {
             for (Alumno alumno : carrera.getAlumnos()) {
                 if (alumno.getNombre().equalsIgnoreCase(nombre)) {
@@ -297,12 +301,20 @@ public class Universidad {
         return null;
     }
 
-    public static Carrera buscarCarreraPorNombre(String nombre) {
-        for (Carrera carrera : carreras) {
-            if (Objects.equals(carrera.getNombre(), nombre)) {
-                return carrera;
+    public ArrayList<Materia> getMateriasInscripto(Alumno alumno_encontrar){
+        ArrayList<Materia> listado = new ArrayList<>();
+        for (Carrera carrera : carreras){
+            for (Materia materia : carrera.getMaterias()){
+                    if(materia.getAlumnos().contains(alumno_encontrar)){
+                        listado.add(materia);
+                    }
             }
         }
-        return null;
+        return listado;
+    }
+
+    public static void main(String[] args) {
+       Universidad uni = new Universidad();
+       uni.mostrarMenu();
     }
 }

@@ -4,7 +4,7 @@
 public class Main {
     public static void main(String[] args) {
         //Llamar al método mostrar Menu de la clase Universidad
-        Universidad.mostrarMenu();
+       // Universidad.mostrarMenu();
     }
     
 }
