@@ -6,6 +6,11 @@ public class Carrera {
     public Coordinador coordinador;
     public double precioInscripcion;
     public double precioCuota;
+
+    public ArrayList<Materia> getMaterias() {
+        return materias;
+    }
+
     public ArrayList<Materia> materias;
 
     public ArrayList<Alumno> getAlumnos() {
@@ -28,5 +33,17 @@ public class Carrera {
         this.precioCuota = precioCuota;
         this.materias = materias;
     }
-}
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Materia getMateria(String nombreMateria) {
+        for (Materia materia : materias) {
+            if (materia.getNombre().equalsIgnoreCase(nombreMateria)) {
+                return materia;
+            }
+        }
+        return null;
+    }
+}

@@ -18,4 +18,19 @@ public class Materia {
     public ArrayList<Alumno> getAlumnos() {
         return alumnos;
     }
+
+    public void cargarSituacionFinal(Alumno alumno, String situacionFinal, int inasistencias) {
+    }
+
+    public void mostrarAlumnos() {
+    }
+
+    public void inscribirAlumno(Alumno alumno) {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+
 }

@@ -8,5 +8,4 @@ public class Alumno extends Persona{
         this.legajo = legajo;
     }
     public int getLegajo() {return legajo;}
-
 }
