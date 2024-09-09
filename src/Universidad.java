@@ -1,13 +1,16 @@
 import java.util.Scanner;
 
 public class Universidad {
-    private static Carrera[] carreras;
+    private Carrera[] carreras;
 
-    public static void setCarreras(Carrera[] carreras) {
-        Universidad.carreras = carreras;
+    public Universidad() {
     }
 
-    public static void mostrarMenu() {
+    public void setCarreras(Carrera[] incarreras) {
+        this.carreras = incarreras;
+    }
+
+    public void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
         int opcion = -1;
         while(opcion != 0) {
@@ -62,7 +65,7 @@ public class Universidad {
         scanner.close();
     }
 
-    public static void matricularNuevoAlumno(Scanner scanner, Carrera carrera) {
+    public void matricularNuevoAlumno(Scanner scanner, Carrera carrera) {
         Alumno alumno = null;
         boolean datosValidos = false;
         while (!datosValidos) {
@@ -113,5 +116,10 @@ public class Universidad {
     
     public static void mostrarAlumnosDeCarreraMateria(Scanner scanner) {
         // Mostrar alumnos inscriptos en una carrera y materia
+    }
+
+    public static void main(String[] args) {
+        Universidad universidad = new Universidad();
+        universidad.mostrarMenu();
     }
 }
