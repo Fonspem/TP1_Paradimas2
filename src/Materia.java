@@ -5,9 +5,9 @@ public class Materia {
     public int curso;
     public boolean segundoCuatrimestre;
     public Profesor profesor;
-    private ArrayList<Alumno> alumnos;
+    private ArrayList<Alumno> alumnos = new ArrayList<>();
 
-    public Materia(String nombre, int curso, boolean segundoCuatrimestre, Profesor profesor, ArrayList<Alumno> alumnos) {
+    public Materia(String nombre, int curso, boolean segundoCuatrimestre, Profesor profesor, ArrayList<Alumno> alumnos ) {
         this.nombre = nombre;
         this.curso = curso;
         this.segundoCuatrimestre = segundoCuatrimestre;
@@ -18,7 +18,7 @@ public class Materia {
     public ArrayList<Alumno> getAlumnos() {
         return alumnos;
     }
-    public void addAlumno(Alumno alumno){ alumnos.add(alumno);}
+    public void addAlumno(Alumno alumno){ this.alumnos.add(alumno);}
 
     public String getNombre() {
         return nombre;

@@ -7,23 +7,22 @@ public class Carrera {
     public double precioInscripcion;
     public double precioCuota;
 
+    public ArrayList<Materia> materias;
     public ArrayList<Materia> getMaterias() {
         return materias;
     }
 
-    public ArrayList<Materia> materias;
-
+    public ArrayList<Alumno> alumnos = new ArrayList<>();
     public ArrayList<Alumno> getAlumnos() {
         return alumnos;
     }
+
     public void addAlumno(Alumno alumno) {
         this.alumnos.add(alumno);
     }
     public void removeAlumno(Alumno alumno){
         this.alumnos.remove(alumno);
     }
-
-    private ArrayList<Alumno> alumnos;
 
     public Carrera(String nombre, int duracion, Coordinador coordinador, double precioInscripcion, double precioCuota,ArrayList<Materia> materias) {
         this.nombre = nombre;

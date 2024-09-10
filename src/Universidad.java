@@ -8,15 +8,7 @@ public class Universidad {
         this.carreras.add(carrera);
     }
 
-    public Universidad(){
-        Coordinador coordSistemas = new Coordinador("Matias","",441212,"",Sexo.MASCULINO,"");
-        Profesor snape = new Profesor("Snape","",13535,"",Sexo.MASCULINO,"");
-        Materia programacion = new Materia("Programacion",2,false,snape,null);
-        ArrayList<Materia> mat = new ArrayList<>();
-        mat.add(programacion);
-        Carrera carrera = new Carrera("Sistemas",10,coordSistemas,0,0,mat);
-        this.addCarreras(carrera);
-    }
+    public Universidad(){}
 
     public void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -50,12 +42,13 @@ public class Universidad {
                             opcion = -1;
                             break;
                         } else if (opcion > 0 && opcion <= carreras.size()) {
-                            matricularNuevoAlumno(scanner, carreras.get(opcion - 1));
+                            this.matricularNuevoAlumno(scanner, carreras.get(opcion - 1));
                             opcion = 0;
                         } else {
                             System.out.println("Opción no válida.");
                         }
                     }
+                    opcion = -1;
                     break;
 
                 case 2://Inscribir Alumno en Materia
@@ -78,6 +71,7 @@ public class Universidad {
                             System.out.println("Opción no válida.");
                         }
                     }
+                    opcion = -1;
                     break;
 
                 case 3://Cargar situación final del cursado
@@ -100,6 +94,7 @@ public class Universidad {
                             System.out.println("Opción no válida.");
                         }
                     }
+                    opcion = -1;
                     break;
 
                 case 4://Mostrar Alumnos de Carrera/Materia
@@ -183,6 +178,7 @@ public class Universidad {
                             System.out.println("Opción no válida.");
                         }
                     }
+                    opcion = -1;
                     break;
 
                 case 0:
@@ -191,6 +187,7 @@ public class Universidad {
 
                 default:
                     System.out.println("Opción no válida.");
+                    opcion = -1;
             }
         }
         scanner.close();
@@ -293,7 +290,7 @@ public class Universidad {
     public ArrayList<Alumno> getAlumnosDeCarrera( Carrera carrera) {
         ArrayList<Alumno> alumnos = new ArrayList<>();
         for (Materia materia : carrera.getMaterias()) {
-            if (!materia.getAlumnos().isEmpty()) {
+            if (materia.getAlumnos() == null | !materia.getAlumnos().isEmpty()) {
                 alumnos.addAll(materia.getAlumnos());
             }
         }
@@ -325,11 +322,28 @@ public class Universidad {
 
     public static void main(String[] args) {
 
-        System.out.println(Sexo.FEMENINO);
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
-       Universidad uni = new Universidad();
-       uni.mostrarMenu();
+        Universidad universidad = new Universidad();
+
+        Coordinador co1 = new Coordinador("Matias","Hernandez",441212,"matu@hernandez.com",Sexo.MASCULINO,"donde e diablo perdio el poncho");
+        Coordinador co2 = new Coordinador("Juan","Perez",476843,"Juanma@perez.com",Sexo.MASCULINO,"donde e diablo perdio la bota");
+        Profesor p1 = new Profesor("Snape","Severus",13535,"",Sexo.MASCULINO,"Hogwarts");
+        Profesor p2 = new Profesor("Hagrid","",26334,"",Sexo.MASCULINO,"Afuera de Hogwarts");
+
+        ArrayList<Materia> materias_c1 = new ArrayList<>();
+        materias_c1.add( new Materia("Defensa contra las artes oscuras",1,false,p1,null));
+        materias_c1.add( new Materia("Pociones",1,true,p2,null));
+
+        ArrayList<Materia> materias_c2 = new ArrayList<>();
+        materias_c2.add( new Materia("Herbologia",2,false,p1,null));
+        materias_c2.add( new Materia("Transformaciones",2,true,p2,null));
+
+        Carrera c1 = new Carrera("Hechicero",10,co1,0,0, materias_c1);
+        Carrera c2 = new Carrera("Cuidador de criaturas Magicas",10,co2,0,0, materias_c2);
+
+        universidad.addCarreras(c1);
+        universidad.addCarreras(c2);
+
+        universidad.mostrarMenu();
 
     }
 }
