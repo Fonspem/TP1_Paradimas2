@@ -7,27 +7,27 @@ public class Persona {
     private String direccion;
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public String getApellido() {
-        return apellido;
+        return this.apellido;
     }
 
     public long getDni() {
-        return dni;
+        return this.dni;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public Sexo getSexo() {
-        return sexo;
+        return this.sexo;
     }
 
     public String getDireccion() {
-        return direccion;
+        return this.direccion;
     }
 
     public Persona(String nombre, String apellido, long dni, String email, Sexo sexo, String direccion) {

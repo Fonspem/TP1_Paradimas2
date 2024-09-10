@@ -8,9 +8,9 @@ public class Profesor extends Persona {
         super(nombre, apellido, dni, email, sexo, direccion);
     }
 
-    public ArrayList<Materia> getMaterias() {return materias;}
-    public void agregarMateria(Materia materia) {materias.add(materia);}
-    public void removerMateria(Materia materia) {materias.remove(materia);}
+    public ArrayList<Materia> getMaterias() {return this.materias;}
+    public void agregarMateria(Materia materia) {this.materias.add(materia);}
+    public void removerMateria(Materia materia) {this.materias.remove(materia);}
 
     //cargar situacion alumnos
     public Situacion get_situacion_de_alumno(Alumno alumno){

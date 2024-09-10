@@ -336,19 +336,25 @@ public class Universidad {
         Profesor p2 = new Profesor("Hagrid","",26334,"",Sexo.MASCULINO,"Afuera de Hogwarts");
 
         ArrayList<Materia> materias_c1 = new ArrayList<>();
-        materias_c1.add( new Materia("Defensa contra las artes oscuras",1,false,p1,new ArrayList<Alumno>()));
-        materias_c1.add( new Materia("Pociones",1,true,p2,new ArrayList<Alumno>()));
+        materias_c1.add( new Materia("Defensa contra las artes oscuras",1,false,p1));
+        materias_c1.add( new Materia("Pociones",1,true,p2));
 
         ArrayList<Materia> materias_c2 = new ArrayList<>();
-        materias_c2.add( new Materia("Herbologia",2,false,p1,new ArrayList<Alumno>()));
-        materias_c2.add( new Materia("Transformaciones",2,true,p2,new ArrayList<Alumno>()));
+        materias_c2.add( new Materia("Herbologia",2,false,p1));
+        materias_c2.add( new Materia("Transformaciones",2,true,p2));
 
         Carrera c1 = new Carrera("Hechicero",10,co1,0,0, materias_c1);
         Carrera c2 = new Carrera("Cuidador de criaturas Magicas",10,co2,0,0, materias_c2);
 
+        Alumno a1 = new Alumno("Juan", "Pérez", 12345678, "juan.perez@email.com", Sexo.MASCULINO, "Calle Falsa 123", 1001);
+        Alumno a2 = new Alumno("Ana", "García", 87654321, "ana.garcia@email.com", Sexo.FEMENINO, "Avenida Siempre Viva 456", 1002);
+        Alumno a3 = new Alumno("Luis", "López", 11223344, "luis.lopez@email.com", Sexo.MASCULINO, "Boulevard Verde 789", 1003);
+        Alumno a4 = new Alumno("María", "Sánchez", 44332211, "maria.sanchez@email.com", Sexo.FEMENINO, "Plaza Roja 321", 1004);
 
-        //Agregen al menos 4 alumnos, uno en cada carrera
-        //Alumno a1 = new Alumno(nombre,etc...);
+        c1.getMaterias().get(0).addAlumno(a1);
+        c1.getMaterias().get(1).addAlumno(a2);
+        c2.getMaterias().get(0).addAlumno(a3);
+        c2.getMaterias().get(1).addAlumno(a4);
 
         universidad.addCarreras(c1);
         universidad.addCarreras(c2);
