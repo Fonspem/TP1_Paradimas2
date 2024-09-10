@@ -13,6 +13,7 @@ public class Alumno extends Persona{
     public Map<Materia, Situacion> getSituaciones() {
         return situaciones;
     }
+
     public void addSituacionMateria(Materia materia, Situacion situacion){
         situaciones.put(materia, situacion);
     }
@@ -21,4 +22,5 @@ public class Alumno extends Persona{
         super(nombre, apellido, dni, email, sexo, direccion);
         this.legajo = legajo;
     }
+
 }

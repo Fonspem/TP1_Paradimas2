@@ -9,7 +9,7 @@ public class Carrera {
 
     public ArrayList<Materia> materias;
     public ArrayList<Materia> getMaterias() {
-        return materias;
+        return this.materias;
     }
 
     public ArrayList<Alumno> alumnos = new ArrayList<>();
@@ -38,7 +38,7 @@ public class Carrera {
     }
 
     public Materia getMateria(String nombreMateria) {
-        for (Materia materia : materias) {
+        for (Materia materia : this.materias) {
             if (materia.getNombre().equalsIgnoreCase(nombreMateria)) {
                 return materia;
             }

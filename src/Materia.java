@@ -17,7 +17,10 @@ public class Materia {
     public ArrayList<Alumno> getAlumnos() {
         return this.alumnos;
     }
-    public void addAlumno(Alumno alumno){ this.alumnos.add(alumno);}
+    public void addAlumno(Alumno alumno){
+        alumno.addSituacionMateria(this,Situacion.CURSANDO);
+        this.alumnos.add(alumno);
+    }
 
     public String getNombre() {
         return this.nombre;

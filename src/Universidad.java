@@ -156,7 +156,7 @@ public class Universidad {
                             while (opcion != 0) {
                                 System.out.println("Seleccione la materia:");
                                 for (int i = 0; i < carreras.get(opcion - 1).getMaterias().size(); i++) {
-                                    System.out.println((i + 1) + ". " + carreras.get(opcion - 1).getMaterias().get(i));
+                                    System.out.println((i + 1) + ". " + carreras.get(opcion - 1).getMaterias().get(i).getNombre());
                                 }
                                 if(carreras.get(opcion - 1).getMaterias().isEmpty()){
                                     System.out.println("No hay alumnos inscriptos");
@@ -173,7 +173,8 @@ public class Universidad {
                                         System.out.println(salida.getApellido()+","
                                                 +salida.getNombre()+","
                                                 +salida.getDni()+","
-                                                +salida.getLegajo());
+                                                +salida.getLegajo()+","
+                                                +salida.getSituaciones().get(carreras.get(opcion-1).getMaterias().get(opcion-1)).toString());
                                     }
                                     opcion = 0;
                                 }
