@@ -7,7 +7,7 @@ public class Materia {
     public Profesor profesor;
     private ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
-    public Materia(String nombre, int curso, boolean segundoCuatrimestre, Profesor profesor ) {
+    public Materia(String nombre, int curso, boolean segundoCuatrimestre, Profesor profesor) {
         this.nombre = nombre;
         this.curso = curso;
         this.segundoCuatrimestre = segundoCuatrimestre;
@@ -17,8 +17,9 @@ public class Materia {
     public ArrayList<Alumno> getAlumnos() {
         return this.alumnos;
     }
-    public void addAlumno(Alumno alumno){
-        alumno.addSituacionMateria(this,Situacion.CURSANDO);
+
+    public void addAlumno(Alumno alumno) {
+        alumno.addSituacionMateria(this, Situacion.CURSANDO);
         this.alumnos.add(alumno);
     }
 

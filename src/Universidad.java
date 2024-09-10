@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//@formatter:on
 public class Universidad {
     private ArrayList<Carrera> carreras = new ArrayList<>();
 
@@ -8,13 +9,14 @@ public class Universidad {
         this.carreras.add(carrera);
     }
 
-    public Universidad(){}
+    public Universidad() {
+    }
 
     public void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
         int opcion = -1;
 
-        while(opcion != 0) {
+        while (opcion != 0) {
             System.out.println("""
                     -Menú -
                     1. Matricular Alumno
@@ -98,7 +100,7 @@ public class Universidad {
                     break;
 
                 case 4://Mostrar Alumnos de Carrera/Materia
-                    while (opcion != 1 && opcion != 2 ) {
+                    while (opcion != 1 && opcion != 2) {
                         System.out.println("""
                                 1.Ver por carrera
                                 2.Ver por materia
@@ -124,14 +126,11 @@ public class Universidad {
                             opcion = -1;
                             break;
                         } else if (opcion > 0 && opcion <= carreras.size()) {
-                            for(Alumno salida : getAlumnosDeCarrera(carreras.get(opcion - 1))){
+                            for (Alumno salida : getAlumnosDeCarrera(carreras.get(opcion - 1))) {
                                 System.out.println("Apellido,Nombre,DNI,Legajo");
-                                System.out.println(salida.getApellido()+","
-                                        +salida.getNombre()+","
-                                        +salida.getDni()+","
-                                        +salida.getLegajo());
+                                System.out.println(salida.getApellido() + "," + salida.getNombre() + "," + salida.getDni() + "," + salida.getLegajo());
                             }
-                            if(getAlumnosDeCarrera(carreras.get(opcion - 1)).isEmpty()){
+                            if (getAlumnosDeCarrera(carreras.get(opcion - 1)).isEmpty()) {
                                 System.out.println("No hay alumnos inscriptos");
                             }
                             opcion = 0;
@@ -158,7 +157,7 @@ public class Universidad {
                                 for (int i = 0; i < carreras.get(opcion - 1).getMaterias().size(); i++) {
                                     System.out.println((i + 1) + ". " + carreras.get(opcion - 1).getMaterias().get(i).getNombre());
                                 }
-                                if(carreras.get(opcion - 1).getMaterias().isEmpty()){
+                                if (carreras.get(opcion - 1).getMaterias().isEmpty()) {
                                     System.out.println("No hay alumnos inscriptos");
                                 }
                                 System.out.println("0. Cancelar visualización de alumnos");
@@ -167,19 +166,14 @@ public class Universidad {
                                 if (opcion == 0) {
                                     opcion = -1;
                                     break;
-                                } else if(opcion <= carreras.get(opcion - 1).getMaterias().size()){
-                                    for(Alumno salida : carreras.get(opcion-1).getMaterias().get(opcion-1).getAlumnos()){
+                                } else if (opcion <= carreras.get(opcion - 1).getMaterias().size()) {
+                                    for (Alumno salida : carreras.get(opcion - 1).getMaterias().get(opcion - 1).getAlumnos()) {
                                         System.out.println("Apellido,Nombre,DNI,Legajo");
-                                        System.out.println(salida.getApellido()+","
-                                                +salida.getNombre()+","
-                                                +salida.getDni()+","
-                                                +salida.getLegajo()+","
-                                                +salida.getSituaciones().get(carreras.get(opcion-1).getMaterias().get(opcion-1)).toString());
+                                        System.out.println(salida.getApellido() + "," + salida.getNombre() + "," + salida.getDni() + "," + salida.getLegajo() + "," + salida.getSituaciones().get(carreras.get(opcion - 1).getMaterias().get(opcion - 1)).toString());
                                     }
                                     opcion = 0;
                                 }
                             }
-
                         } else {
                             opcion = 2;
                             System.out.println("Opción no válida.");
@@ -240,7 +234,7 @@ public class Universidad {
                 System.out.println("Error: " + e.getMessage() + " Intente de nuevo.");
             }
         }
-       carrera.addAlumno(alumno);
+        carrera.addAlumno(alumno);
     }
 
     public void inscribirAlumnoEnMateria(Scanner scanner, Carrera carrera) {
@@ -283,8 +277,8 @@ public class Universidad {
             int opcion = scanner.nextInt();
 
             if (opcion != 0 && opcion <= listado.size()) {
-                Situacion sit_actual = listado.get(opcion-1).profesor.get_situacion_de_alumno(alumno);
-                alumno.addSituacionMateria(listado.get(opcion),sit_actual);
+                Situacion sit_actual = listado.get(opcion - 1).profesor.get_situacion_de_alumno(alumno);
+                alumno.addSituacionMateria(listado.get(opcion), sit_actual);
                 System.out.println("Situación final cargada.");
             } else {
                 System.out.println("Materia no encontrada.");
@@ -294,7 +288,7 @@ public class Universidad {
         }
     }
 
-    public ArrayList<Alumno> getAlumnosDeCarrera( Carrera carrera) {
+    public ArrayList<Alumno> getAlumnosDeCarrera(Carrera carrera) {
         ArrayList<Alumno> alumnos = new ArrayList<>();
         for (Materia materia : carrera.getMaterias()) {
             if (materia.getAlumnos() == null | !materia.getAlumnos().isEmpty()) {
@@ -315,13 +309,13 @@ public class Universidad {
         return null;
     }
 
-    public ArrayList<Materia> getMateriasInscripto(Alumno alumno_encontrar){
+    public ArrayList<Materia> getMateriasInscripto(Alumno alumno_encontrar) {
         ArrayList<Materia> listado = new ArrayList<>();
-        for (Carrera carrera : carreras){
-            for (Materia materia : carrera.getMaterias()){
-                    if(materia.getAlumnos().contains(alumno_encontrar)){
-                        listado.add(materia);
-                    }
+        for (Carrera carrera : carreras) {
+            for (Materia materia : carrera.getMaterias()) {
+                if (materia.getAlumnos().contains(alumno_encontrar)) {
+                    listado.add(materia);
+                }
             }
         }
         return listado;
@@ -331,21 +325,21 @@ public class Universidad {
 
         Universidad universidad = new Universidad();
 
-        Coordinador co1 = new Coordinador("Matias","Hernandez",441212,"matu@hernandez.com",Sexo.MASCULINO,"donde e diablo perdio el poncho");
-        Coordinador co2 = new Coordinador("Juan","Perez",476843,"Juanma@perez.com",Sexo.MASCULINO,"donde e diablo perdio la bota");
-        Profesor p1 = new Profesor("Snape","Severus",13535,"",Sexo.MASCULINO,"Hogwarts");
-        Profesor p2 = new Profesor("Hagrid","",26334,"",Sexo.MASCULINO,"Afuera de Hogwarts");
+        Coordinador co1 = new Coordinador("Matias", "Hernandez", 441212, "matu@hernandez.com", Sexo.MASCULINO, "donde e diablo perdio el poncho");
+        Coordinador co2 = new Coordinador("Juan", "Perez", 476843, "Juanma@perez.com", Sexo.MASCULINO, "donde e diablo perdio la bota");
+        Profesor p1 = new Profesor("Snape", "Severus", 13535, "", Sexo.MASCULINO, "Hogwarts");
+        Profesor p2 = new Profesor("Hagrid", "", 26334, "", Sexo.MASCULINO, "Afuera de Hogwarts");
 
         ArrayList<Materia> materias_c1 = new ArrayList<>();
-        materias_c1.add( new Materia("Defensa contra las artes oscuras",1,false,p1));
-        materias_c1.add( new Materia("Pociones",1,true,p2));
+        materias_c1.add(new Materia("Defensa contra las artes oscuras", 1, false, p1));
+        materias_c1.add(new Materia("Pociones", 1, true, p2));
 
         ArrayList<Materia> materias_c2 = new ArrayList<>();
-        materias_c2.add( new Materia("Herbologia",2,false,p1));
-        materias_c2.add( new Materia("Transformaciones",2,true,p2));
+        materias_c2.add(new Materia("Herbologia", 2, false, p1));
+        materias_c2.add(new Materia("Transformaciones", 2, true, p2));
 
-        Carrera c1 = new Carrera("Hechicero",10,co1,0,0, materias_c1);
-        Carrera c2 = new Carrera("Cuidador de criaturas Magicas",10,co2,0,0, materias_c2);
+        Carrera c1 = new Carrera("Hechicero", 10, co1, 0, 0, materias_c1);
+        Carrera c2 = new Carrera("Cuidador de criaturas Magicas", 10, co2, 0, 0, materias_c2);
 
         Alumno a1 = new Alumno("Juan", "Pérez", 12345678, "juan.perez@email.com", Sexo.MASCULINO, "Calle Falsa 123", 1001);
         Alumno a2 = new Alumno("Ana", "García", 87654321, "ana.garcia@email.com", Sexo.FEMENINO, "Avenida Siempre Viva 456", 1002);

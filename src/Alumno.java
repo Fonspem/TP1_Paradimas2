@@ -2,19 +2,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Alumno extends Persona{
+public class Alumno extends Persona {
 
     private int legajo;
 
-    public int getLegajo() {return legajo;}
+    public int getLegajo() {
+        return legajo;
+    }
 
-    private Map<Materia,Situacion> situaciones = new HashMap<Materia,Situacion>();
+    private Map<Materia, Situacion> situaciones = new HashMap<Materia, Situacion>();
 
     public Map<Materia, Situacion> getSituaciones() {
         return situaciones;
     }
 
-    public void addSituacionMateria(Materia materia, Situacion situacion){
+    public void addSituacionMateria(Materia materia, Situacion situacion) {
         situaciones.put(materia, situacion);
     }
 
