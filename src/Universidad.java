@@ -324,7 +324,12 @@ public class Universidad {
     }
 
     public static void main(String[] args) {
+
+        System.out.println(Sexo.FEMENINO);
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
        Universidad uni = new Universidad();
        uni.mostrarMenu();
+
     }
 }
