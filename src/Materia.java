@@ -5,7 +5,7 @@ public class Materia {
     public int curso;
     public boolean segundoCuatrimestre;
     public Profesor profesor;
-    private ArrayList<Alumno> alumnos = new ArrayList<>();
+    private ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
     public Materia(String nombre, int curso, boolean segundoCuatrimestre, Profesor profesor, ArrayList<Alumno> alumnos ) {
         this.nombre = nombre;

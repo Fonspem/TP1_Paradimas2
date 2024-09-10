@@ -112,9 +112,9 @@ public class Universidad {
                         }
                     }
                     while (opcion == 1) {
-                        System.out.println("Seleccione la Materia:");
+                        System.out.println("Seleccione la Carrera:");
                         for (int i = 0; i < carreras.size(); i++) {
-                            System.out.println((i + 1) + ". " + carreras.get(i).getNombre().toUpperCase());
+                            System.out.println((i + 1) + ". " + carreras.get(i).getNombre());
                         }
                         System.out.println("0. Cancelar visualización de alumnos");
                         opcion = scanner.nextInt();
@@ -130,6 +130,9 @@ public class Universidad {
                                         +salida.getNombre()+","
                                         +salida.getDni()+","
                                         +salida.getLegajo());
+                            }
+                            if(getAlumnosDeCarrera(carreras.get(opcion - 1)).isEmpty()){
+                                System.out.println("No hay alumnos inscriptos");
                             }
                             opcion = 0;
                         } else {
@@ -154,6 +157,9 @@ public class Universidad {
                                 System.out.println("Seleccione la materia:");
                                 for (int i = 0; i < carreras.get(opcion - 1).getMaterias().size(); i++) {
                                     System.out.println((i + 1) + ". " + carreras.get(opcion - 1).getMaterias().get(i));
+                                }
+                                if(carreras.get(opcion - 1).getMaterias().isEmpty()){
+                                    System.out.println("No hay alumnos inscriptos");
                                 }
                                 System.out.println("0. Cancelar visualización de alumnos");
                                 opcion = scanner.nextInt();
@@ -237,9 +243,9 @@ public class Universidad {
     }
 
     public void inscribirAlumnoEnMateria(Scanner scanner, Carrera carrera) {
-        System.out.println("Ingrese el nombre del alumno a inscribir:");
-        String nombreAlumno = scanner.nextLine();
-        Alumno alumno = buscarAlumnoPorNombre(nombreAlumno);
+        System.out.println("Ingrese el legajo del alumno a inscribir:");
+        int legajo = scanner.nextInt();
+        Alumno alumno = buscarAlumnoPorlegajo(legajo);
 
         if (alumno != null) {
             System.out.println("Seleccione la materia:");
@@ -263,9 +269,9 @@ public class Universidad {
     }
 
     public void cargarSituacionFinal(Scanner scanner) {
-        System.out.println("Ingrese el nombre del alumno:");
-        String nombreAlumno = scanner.nextLine();
-        Alumno alumno = buscarAlumnoPorNombre(nombreAlumno);
+        System.out.println("Ingrese el legajo del alumno:");
+        int legajo = scanner.nextInt();
+        Alumno alumno = buscarAlumnoPorlegajo(legajo);
         ArrayList<Materia> listado = getMateriasInscripto(alumno);
 
         if (alumno != null) {
@@ -297,10 +303,10 @@ public class Universidad {
         return alumnos;
     }
 
-    public Alumno buscarAlumnoPorNombre(String nombre) {
+    public Alumno buscarAlumnoPorlegajo(int legajo) {
         for (Carrera carrera : carreras) {
             for (Alumno alumno : carrera.getAlumnos()) {
-                if (alumno.getNombre().equalsIgnoreCase(nombre)) {
+                if (alumno.getLegajo() == legajo) {
                     return alumno;
                 }
             }
@@ -330,15 +336,19 @@ public class Universidad {
         Profesor p2 = new Profesor("Hagrid","",26334,"",Sexo.MASCULINO,"Afuera de Hogwarts");
 
         ArrayList<Materia> materias_c1 = new ArrayList<>();
-        materias_c1.add( new Materia("Defensa contra las artes oscuras",1,false,p1,null));
-        materias_c1.add( new Materia("Pociones",1,true,p2,null));
+        materias_c1.add( new Materia("Defensa contra las artes oscuras",1,false,p1,new ArrayList<Alumno>()));
+        materias_c1.add( new Materia("Pociones",1,true,p2,new ArrayList<Alumno>()));
 
         ArrayList<Materia> materias_c2 = new ArrayList<>();
-        materias_c2.add( new Materia("Herbologia",2,false,p1,null));
-        materias_c2.add( new Materia("Transformaciones",2,true,p2,null));
+        materias_c2.add( new Materia("Herbologia",2,false,p1,new ArrayList<Alumno>()));
+        materias_c2.add( new Materia("Transformaciones",2,true,p2,new ArrayList<Alumno>()));
 
         Carrera c1 = new Carrera("Hechicero",10,co1,0,0, materias_c1);
         Carrera c2 = new Carrera("Cuidador de criaturas Magicas",10,co2,0,0, materias_c2);
+
+
+        //Agregen al menos 4 alumnos, uno en cada carrera
+        //Alumno a1 = new Alumno(nombre,etc...);
 
         universidad.addCarreras(c1);
         universidad.addCarreras(c2);

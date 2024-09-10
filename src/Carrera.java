@@ -34,7 +34,7 @@ public class Carrera {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public Materia getMateria(String nombreMateria) {
