@@ -278,7 +278,7 @@ public class Universidad {
 
             if (opcion != 0 && opcion <= listado.size()) {
                 Situacion sit_actual = listado.get(opcion - 1).profesor.get_situacion_de_alumno(alumno);
-                alumno.addSituacionMateria(listado.get(opcion), sit_actual);
+                alumno.addSituacionMateria(listado.get(opcion - 1), sit_actual);
                 System.out.println("Situación final cargada.");
             } else {
                 System.out.println("Materia no encontrada.");
