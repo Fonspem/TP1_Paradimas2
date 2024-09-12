@@ -194,7 +194,7 @@ public class Universidad {
         scanner.close();
     }
 
-    public void matricularNuevoAlumno(Scanner scanner, Carrera carrera) {
+    private void matricularNuevoAlumno(Scanner scanner, Carrera carrera) {
         Alumno alumno = null;
         boolean datosValidos = false;
         while (!datosValidos) {
@@ -238,7 +238,7 @@ public class Universidad {
         System.out.println("Alumno inscripto en " + carrera.getNombre());
     }
 
-    public void inscribirAlumnoEnMateria(Scanner scanner, Carrera carrera) {
+    private void inscribirAlumnoEnMateria(Scanner scanner, Carrera carrera) {
         System.out.println("Ingrese el legajo del alumno a inscribir:");
         int legajo = scanner.nextInt();
         Alumno alumno = buscarAlumnoPorlegajo(legajo);
@@ -264,7 +264,7 @@ public class Universidad {
         }
     }
 
-    public void cargarSituacionFinal(Scanner scanner) {
+    private void cargarSituacionFinal(Scanner scanner) {
         System.out.println("Ingrese el legajo del alumno:");
         int legajo = scanner.nextInt();
         Alumno alumno = buscarAlumnoPorlegajo(legajo);
@@ -289,7 +289,7 @@ public class Universidad {
         }
     }
 
-    public ArrayList<Alumno> getAlumnosDeCarrera(Carrera carrera) {
+    private ArrayList<Alumno> getAlumnosDeCarrera(Carrera carrera) {
         ArrayList<Alumno> alumnos = new ArrayList<>();
         for (Materia materia : carrera.getMaterias()) {
             if (materia.getAlumnos() == null | !materia.getAlumnos().isEmpty()) {
@@ -305,7 +305,7 @@ public class Universidad {
         return alumnos;
     }
 
-    public Alumno buscarAlumnoPorlegajo(int legajo) {
+    private Alumno buscarAlumnoPorlegajo(int legajo) {
         for (Carrera carrera : carreras) {
             for (Alumno alumno : carrera.getAlumnos()) {
                 if (alumno.getLegajo() == legajo) {
@@ -316,7 +316,7 @@ public class Universidad {
         return null;
     }
 
-    public ArrayList<Materia> getMateriasInscripto(Alumno alumno_encontrar) {
+    private ArrayList<Materia> getMateriasInscripto(Alumno alumno_encontrar) {
         ArrayList<Materia> listado = new ArrayList<>();
         for (Carrera carrera : carreras) {
             for (Materia materia : carrera.getMaterias()) {
