@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Profesor extends Persona {
-    ArrayList<Materia> materias = new ArrayList<>();
+    private ArrayList<Materia> materias = new ArrayList<>();
 
     public Profesor(String nombre, String apellido, long dni, String email, Sexo sexo, String direccion) {
         super(nombre, apellido, dni, email, sexo, direccion);

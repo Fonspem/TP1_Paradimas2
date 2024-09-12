@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Materia {
-    public String nombre;
-    public int curso;
-    public boolean segundoCuatrimestre;
-    public Profesor profesor;
+    private String nombre;
+    private int curso;
+    private boolean segundoCuatrimestre;
+    private Profesor profesor;
     private ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
     public Materia(String nombre, int curso, boolean segundoCuatrimestre, Profesor profesor) {
@@ -12,6 +12,10 @@ public class Materia {
         this.curso = curso;
         this.segundoCuatrimestre = segundoCuatrimestre;
         this.profesor = profesor;
+    }
+
+    public Profesor getProfesor() {
+        return this.profesor;
     }
 
     public ArrayList<Alumno> getAlumnos() {

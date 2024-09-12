@@ -235,6 +235,7 @@ public class Universidad {
             }
         }
         carrera.addAlumno(alumno);
+        System.out.println("Alumno inscripto en " + carrera.getNombre());
     }
 
     public void inscribirAlumnoEnMateria(Scanner scanner, Carrera carrera) {
@@ -277,7 +278,7 @@ public class Universidad {
             int opcion = scanner.nextInt();
 
             if (opcion != 0 && opcion <= listado.size()) {
-                Situacion sit_actual = listado.get(opcion - 1).profesor.get_situacion_de_alumno(alumno);
+                Situacion sit_actual = listado.get(opcion - 1).getProfesor().get_situacion_de_alumno(alumno);
                 alumno.addSituacionMateria(listado.get(opcion - 1), sit_actual);
                 System.out.println("Situación final cargada.");
             } else {
@@ -295,6 +296,12 @@ public class Universidad {
                 alumnos.addAll(materia.getAlumnos());
             }
         }
+        for (Alumno alumno : carrera.getAlumnos()) {
+            if(!alumnos.contains(alumno)) {
+                alumnos.add(alumno);
+            }
+        }
+
         return alumnos;
     }
 

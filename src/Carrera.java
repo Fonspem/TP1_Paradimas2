@@ -1,22 +1,22 @@
 import java.util.ArrayList;
 
 public class Carrera {
-    public String nombre;
-    public int duracion;
-    public Coordinador coordinador;
-    public double precioInscripcion;
-    public double precioCuota;
+    private String nombre;
+    private int duracion;
+    private Coordinador coordinador;
+    private double precioInscripcion;
+    private double precioCuota;
 
-    public ArrayList<Materia> materias;
+    private ArrayList<Materia> materias;
+
+    private ArrayList<Alumno> alumnos = new ArrayList<>();
 
     public ArrayList<Materia> getMaterias() {
         return this.materias;
     }
 
-    public ArrayList<Alumno> alumnos = new ArrayList<>();
-
     public ArrayList<Alumno> getAlumnos() {
-        return alumnos;
+        return this.alumnos;
     }
 
     public void addAlumno(Alumno alumno) {
